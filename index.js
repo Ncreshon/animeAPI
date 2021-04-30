@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = 3001
 
-const  {searchAnime, getAnime} = require('./API/kitsuCalls.js');
+const  {searchAnime, getAnime, getMoreAnime} = require('./API/kitsuCalls.js');
 
 const jsonParser = bodyParser.json()
 
@@ -17,6 +17,12 @@ app.get('/getAnime', (req, res) => {
 
 app.post('/searchAnime', jsonParser, function (req, res) {
     searchAnime(req.body.searchTerm).then((response) => {
+    res.send(response)
+    })
+  })
+
+  app.post('/getmoreanime', jsonParser, function (req, res) {
+    getMoreAnime(req.body.offset).then((response) => {
     res.send(response)
     })
   })

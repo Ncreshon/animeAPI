@@ -12,7 +12,7 @@ const config= {
 
   const getAnime = () => {
     config.method = 'get';
-    config.url = `${BASEURL}/anime?page[limit]=10&page[offset]=0`; 
+    config.url = `${BASEURL}/anime?page[limit]=20&page[offset]=0`; 
   return  axios(config)
 .then(function (response) {
   return JSON.stringify(response.data);
@@ -34,7 +34,20 @@ const searchAnime = (searchTerm) => {
 })
 }
 
+const getMoreAnime = (offset) => {
+  config.method = 'get';
+  config.url = `${BASEURL}/anime?page[limit]=20&page[offset]=${offset}`; 
+return  axios(config)
+.then(function (response) {
+return JSON.stringify(response.data);
+})
+.catch(function (error) {
+  console.log(error);  
+})
+}
+
 module.exports = {
    searchAnime,
    getAnime,
+   getMoreAnime
   };
