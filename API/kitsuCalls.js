@@ -24,7 +24,7 @@ const config= {
 
 const searchAnime = (searchTerm) => {
     config.method = 'get';
-    config.url = `${BASEURL}/anime?[text]=${searchTerm}`; 
+    config.url = `${BASEURL}/anime?filter[text]=${searchTerm}`; 
   return  axios(config)
 .then(function (response) {
   return JSON.stringify(response.data);
